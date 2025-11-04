@@ -28,9 +28,8 @@ export default function RegisterWidget() {
                 inputValue={confirmPassword}
                 onInputValueChange={e => setConfirmPassword(e.target.value)}
             />
-            <button type="submit" disabled={btnDisabled} onClick={(evt) => {
-                setBtnDisabled(true)
-                evt.preventDefault()
+            <button type="button" disabled={btnDisabled} onClick={(evt) => {
+                setBtnDisabled(true);
                 if (password !== confirmPassword) {
                     setError("Passwords do not match")
                     setTimeout(() => {

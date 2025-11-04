@@ -31,7 +31,6 @@ export default function ChangePassword() {
             />
             <button type="button" disabled={btnDisabled} onClick={(evt) => {
                 setBtnDisabled(true);
-                evt.preventDefault();
                 if (newPassword === newPasswordConfirm) {
                     const sm = new SessionManager()
                     const am = new AdminManager()

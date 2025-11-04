@@ -21,9 +21,8 @@ export default function LoginWidget() {
                 inputValue={password}
                 onInputValueChange={e => setPassword(e.target.value)}
             />
-            <button type="submit" disabled={btnDisabled} onClick={(evt) => {
+            <button type="button" disabled={btnDisabled} onClick={(evt) => {
                 setBtnDisabled(true)
-                evt.preventDefault()
                 const sm = new SessionManager()
                 if (sm.login(username, password)) {
                     window.location.reload()
