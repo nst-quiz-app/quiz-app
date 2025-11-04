@@ -1,1 +1,9 @@
-This is the learner page
+---
+import Layout from "../layouts/Layout.astro";
+import LogoutButton from "../components/LogoutButton"
+---
+
+<Layout>
+    <p>This is the learner page</p>
+    <LogoutButton client:load></LogoutButton>
+</Layout>
