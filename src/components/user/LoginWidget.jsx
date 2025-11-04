@@ -4,11 +4,14 @@ function login(evt) {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
     const sm = new SessionManager()
-    sm.login(username, password)
-    window.location.reload()
+    if (sm.login(username, password)) {
+        window.location.reload()
+    }
+    document.getElementById("lol").style.display = "block"
 }
 export default function LoginWidget() {
-    return <form>
+    return <>
+    <form>
         <div>
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" />
@@ -19,4 +22,6 @@ export default function LoginWidget() {
         </div>
         <button type="submit" onClick={login}>Login</button>
     </form>
+    <p id="lol" style={{display: "none"}}>Login Failed</p>
+    </>
 }
