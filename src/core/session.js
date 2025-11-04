@@ -1,4 +1,4 @@
-import { AdminManager, LearnersManager, usersInit } from "./users"
+import { AdminManager, LearnersManager } from "./users"
 
 class SessionManager {
     getUsername() {
@@ -11,7 +11,6 @@ class SessionManager {
         return sessionStorage.getItem("username") === "admin"
     }
     login(username, password) {
-        usersInit()
         const am=new AdminManager()
         const lm = new LearnersManager()
         if (username === "admin") {

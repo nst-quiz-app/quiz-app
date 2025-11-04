@@ -12,7 +12,9 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<script>
+			import { usersInit } from "../core/users";
 			import { SessionManager } from "../core/session";
+			usersInit()
 			const sm = new SessionManager();
 			function toPageIfNotAlready(loc: string) {
 				if (window.location.pathname !== loc) {
