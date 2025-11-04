@@ -3,7 +3,7 @@ class SessionManager {
         this.username = sessionStorage.getItem("username")
     }
     isLoggedIn() {
-        return !this.username
+        return !!this.username
     }
     isAdmin() {
         return this.username === "admin"
