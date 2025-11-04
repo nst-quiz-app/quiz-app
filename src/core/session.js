@@ -1,14 +1,14 @@
 import { AdminManager, LearnersManager, usersInit } from "./users"
 
 class SessionManager {
-    constructor() {
-        this.username = sessionStorage.getItem("username")
+    getUsername() {
+        return sessionStorage.getItem("username")
     }
     isLoggedIn() {
-        return !!this.username
+        return !!sessionStorage.getItem("username")
     }
     isAdmin() {
-        return this.username === "admin"
+        return sessionStorage.getItem("username") === "admin"
     }
     login(username, password) {
         usersInit()
@@ -24,12 +24,10 @@ class SessionManager {
                 return false
             }
         }
-        this.username = username
         sessionStorage.setItem("username", username)
         return true
     }
     logout() {
-        this.username = null
         sessionStorage.removeItem("username")
     }
 }

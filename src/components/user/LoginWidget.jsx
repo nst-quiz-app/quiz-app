@@ -6,6 +6,7 @@ function login(evt) {
     const sm = new SessionManager()
     if (sm.login(username, password)) {
         window.location.reload()
+        return
     }
     document.getElementById("lol").style.display = "block"
 }

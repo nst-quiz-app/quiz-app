@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LogoutButton from "../components/user/LogoutButton"
+import ChangePassword from "../components/user/ChangePassword"
 ---
 
 <Layout>
     <p>This is the admin page</p>
     <LogoutButton client:load></LogoutButton>
+    <ChangePassword client:load />
 </Layout>
