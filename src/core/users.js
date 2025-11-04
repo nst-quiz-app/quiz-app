@@ -1,17 +1,14 @@
-const set = localStorage.setItem.bind(localStorage)
-const get = localStorage.getItem.bind(localStorage)
-const setJSON = (k, v) => set(k, JSON.stringify(v))
-const getJSON = k => JSON.parse(get(k))
-
-if (!get("initialised")) { // initial setup
-    set("admin-password", "I hate organic chemistry")
-    setJSON("learners-credentials", {})
-    set("initialised", "true")
+function usersInit() {
+    if (!localStorage.getItem("initialised")) { // initial setup
+        localStorage.setItem("admin-password", "I hate organic chemistry")
+        localStorage.setItem("learners-credentials", JSON.stringify({}))
+        localStorage.setItem("initialised", "true")
+    }
 }
 
 class AdminManager {
     constructor() {
-        this.password = get("admin-password")
+        this.password = localStorage.getItem("admin-password")
     }
     check(password) {
         return this.password === password
@@ -19,34 +16,34 @@ class AdminManager {
     updatePassword(oldPassword, newPassword) {
         if (this.check(oldPassword)) {
             this.password = newPassword
-            set("admin-password", newPassword)
+            localStorage.setItem("admin-password", newPassword)
         }
     }
 }
 
 class LearnersManager {
     constructor() {
-        this.credentials = getJSON("learners-credentials")
+        this.credentials = JSON.parse(localStorage.getItem("learners-credentials"))
     }
     add(username, password) {
         this.credentials[username] = password
-        setJSON("learners-credentials", this.credentials)
+        localStorage.setItem("learners-credentials", JSON.stringify(this.credentials))
     }
     check(username, password) {
         return this.credentials[username] === password
     }
-    updatePassword(username, oldPassword, newPassword, byAdmin=false) {
+    updatePassword(username, oldPassword, newPassword, byAdmin = false) {
         if (this.check(username, oldPassword) || byAdmin) {
             this.credentials[username] = newPassword
-            setJSON("learners-credentials", this.credentials)
+            localStorage.setItem("learners-credentials", JSON.stringify(this.credentials))
             return true
         }
         return false
     }
-    remove(username, password, byAdmin=false) {
+    remove(username, password, byAdmin = false) {
         if (this.check(username, password) || byAdmin) {
             delete this.credentials[username]
-            setJSON("learners-credentials", this.credentials)
+            localStorage.setItem("learners-credentials", JSON.stringify(this.credentials))
             return true
         }
         return false
@@ -56,4 +53,4 @@ class LearnersManager {
     }
 }
 
-export {AdminManager, LearnersManager}
+export { AdminManager, LearnersManager, usersInit }
