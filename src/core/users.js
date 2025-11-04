@@ -1,5 +1,5 @@
-const set = localStorage.setItem
-const get = localStorage.getItem
+const set = localStorage.setItem.bind(localStorage)
+const get = localStorage.getItem.bind(localStorage)
 const setJSON = (k, v) => set(k, JSON.stringify(v))
 const getJSON = k => JSON.parse(get(k))
 
