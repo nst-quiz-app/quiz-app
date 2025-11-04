@@ -1,4 +1,12 @@
-import { SessionManager } from "../core/session"
+import { SessionManager } from "../../core/session"
+function login(evt) {
+    evt.preventDefault()
+    const username = document.getElementById("username").value
+    const password = document.getElementById("password").value
+    const sm = new SessionManager()
+    sm.login(username, password)
+    window.location.reload()
+}
 export default function LoginWidget() {
     return <form>
         <div>
@@ -11,12 +19,4 @@ export default function LoginWidget() {
         </div>
         <button type="submit" onClick={login}>Login</button>
     </form>
-    function login(evt) {
-        evt.preventDefault()
-        const username = document.getElementById("username").value
-        const password = document.getElementById("password").value
-        const sm = new SessionManager()
-        sm.login(username, password)
-        window.location.reload()
-    }
 }
