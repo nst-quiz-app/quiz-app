@@ -1,8 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LoginWidget from "../components/user/LoginWidget"
+import RegisterWidget from "../components/user/RegisterWidget"
 ---
 
 <Layout title="Quiz App - Login">
 	<LoginWidget client:load></LoginWidget>
+	<RegisterWidget client:load></RegisterWidget>
 </Layout>

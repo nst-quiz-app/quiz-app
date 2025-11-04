@@ -12,6 +12,7 @@ function login(evt) {
 }
 export default function LoginWidget() {
     return <>
+    <h2>Login Form</h2>
     <form>
         <div>
             <label htmlFor="username">Username</label>

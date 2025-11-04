@@ -19,7 +19,7 @@ class AdminManager {
 
 class LearnersManager {
     add(username, password) {
-        credentials = JSON.parse(localStorage.getItem("learners-credentials"))
+        const credentials = JSON.parse(localStorage.getItem("learners-credentials"))
         credentials[username] = password
         localStorage.setItem("learners-credentials", JSON.stringify(credentials))
     }
@@ -28,7 +28,7 @@ class LearnersManager {
     }
     updatePassword(username, oldPassword, newPassword, byAdmin = false) {
         if (this.check(username, oldPassword) || byAdmin) {
-            credentials = JSON.parse(localStorage.getItem("learners-credentials"))
+            const credentials = JSON.parse(localStorage.getItem("learners-credentials"))
             credentials[username] = newPassword
             localStorage.setItem("learners-credentials", JSON.stringify(credentials))
             return true
@@ -37,7 +37,7 @@ class LearnersManager {
     }
     remove(username, password, byAdmin = false) {
         if (this.check(username, password) || byAdmin) {
-            credentials = JSON.parse(localStorage.getItem("learners-credentials"))
+            const credentials = JSON.parse(localStorage.getItem("learners-credentials"))
             delete credentials[username]
             localStorage.setItem("learners-credentials", JSON.stringify(credentials))
             return true
