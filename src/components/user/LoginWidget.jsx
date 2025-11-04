@@ -1,29 +1,42 @@
 import { SessionManager } from "../../core/session"
-function login(evt) {
-    evt.preventDefault()
-    const username = document.getElementById("username").value
-    const password = document.getElementById("password").value
-    const sm = new SessionManager()
-    if (sm.login(username, password)) {
-        window.location.reload()
-        return
-    }
-    document.getElementById("lol").style.display = "block"
-}
+import { useState } from "react"
+import FormLabelInputPair from "../FormLabelInputPair"
+
 export default function LoginWidget() {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+    const [btnDisabled, setBtnDisabled] = useState(false)
     return <>
-    <h2>Login Form</h2>
-    <form>
-        <div>
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" />
-        </div>
-        <div>
-            <label htmlFor="password">password</label>
-            <input type="password" id="password" name="password" />
-        </div>
-        <button type="submit" onClick={login}>Login</button>
-    </form>
-    <p id="lol" style={{display: "none"}}>Login Failed</p>
+        <h2>Login Form</h2>
+        <form>
+            <FormLabelInputPair
+                labelText="Username"
+                inputValue={username}
+                onInputValueChange={e => setUsername(e.target.value)}
+            />
+            <FormLabelInputPair
+                labelText="Password"
+                inputType="password"
+                inputValue={password}
+                onInputValueChange={e => setPassword(e.target.value)}
+            />
+            <button type="submit" disabled={btnDisabled} onClick={(evt) => {
+                setBtnDisabled(true)
+                evt.preventDefault()
+                const sm = new SessionManager()
+                if (sm.login(username, password)) {
+                    window.location.reload()
+                }
+                else {
+                    setError("Username and password doesn't match")
+                    setTimeout(() => {
+                        setError("")
+                        setBtnDisabled(false)
+                    }, 3000)
+                }
+            }}>Login</button>
+        </form>
+        <p style={{ display: error ? "block" : "none" }}>{error}</p>
     </>
 }
