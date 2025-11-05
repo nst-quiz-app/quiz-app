@@ -1,5 +1,8 @@
 function usersInit() {
-    if (!localStorage.getItem("initialised")) { // initial setup
+    /**
+    If not already initialised, the default setup is done
+    */
+    if (!localStorage.getItem("initialised")) {
         localStorage.setItem("admin-password", "I hate organic chemistry")
         localStorage.setItem("learners-credentials", JSON.stringify({}))
         localStorage.setItem("initialised", "true")
@@ -7,6 +10,10 @@ function usersInit() {
 }
 
 class AdminManager {
+    /*
+    check(password) - returns true if correct password; returns false if incorrect password
+    updatePassword(oldPassword, newPassword) - updates the password if the oldPassword is correct
+    */
     check(password) {
         return localStorage.getItem("admin-password") === password
     }
@@ -18,6 +25,17 @@ class AdminManager {
 }
 
 class LearnersManager {
+    /*
+    add(username, password) - adds a new user. Note: it doesn't check whether the user already exists
+    check(password) - returns true if correct password; returns false if incorrect password
+    updatePassword(username, oldPassword, newPassword, byAdmin = false)
+        - updates the password if either the oldPassword is correct or if it's done by admin
+        - returns true upon success and false otherwise
+    remove(username, password, byAdmin = false)
+        - removes an user if either the password is correct or if done by admin
+        - returns true upon success and false otherwise
+    exists(username) - returns true is the username already exists or it will return false
+    */
     add(username, password) {
         const credentials = JSON.parse(localStorage.getItem("learners-credentials"))
         credentials[username] = password

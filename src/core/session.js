@@ -1,6 +1,12 @@
 import { AdminManager, LearnersManager } from "./users"
 
 class SessionManager {
+    /*
+    getUsername() - returns the current logged in user's username
+    isLoggedIn() - returns true if an user is logged in and false otherwise
+    isAdmin() - returns true if the admin is currently logged in and false otherwise
+    logout() - logs out the current user
+    */
     getUsername() {
         return sessionStorage.getItem("username")
     }
