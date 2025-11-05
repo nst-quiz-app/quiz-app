@@ -17,7 +17,7 @@ const { title } = Astro.props;
 			usersInit()
 			const sm = new SessionManager();
 			function toPageIfNotAlready(loc: string) {
-				if (window.location.pathname !== loc) {
+				if (![loc, `${loc}/`].includes(window.location.pathname)) {
 					window.location.href = loc;
 				}
 			}
