@@ -1,14 +1,17 @@
 import { SessionManager } from "../../core/session";
 import { AdminManager, LearnersManager } from "../../core/users";
 import FormLabelInputPair from "../FormLabelInputPair";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ChangePassword() {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [error, setError] = useState("");
-    const [btnDisabled, setBtnDisabled] = useState(false);
+    const [btnDisabled, setBtnDisabled] = useState(true);
+    useEffect(() => {
+        setBtnDisabled(!oldPassword || !newPassword || !newPasswordConfirm)
+    }, [oldPassword, newPassword, newPasswordConfirm])
     return <>
         <form>
             <FormLabelInputPair

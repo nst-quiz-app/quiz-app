@@ -1,12 +1,15 @@
 import { SessionManager } from "../../core/session"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import FormLabelInputPair from "../FormLabelInputPair"
 
 export default function LoginWidget() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-    const [btnDisabled, setBtnDisabled] = useState(false)
+    const [btnDisabled, setBtnDisabled] = useState(true)
+    useEffect(() => {
+        setBtnDisabled(!username || !password)
+    }, [username, password])
     return <>
         <h2>Login Form</h2>
         <form>

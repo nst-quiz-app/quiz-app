@@ -1,13 +1,16 @@
 import { LearnersManager } from "../../core/users"
 import FormLabelInputPair from "../FormLabelInputPair"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function RegisterWidget() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("")
-    const [btnDisabled, setBtnDisabled] = useState(false)
+    const [btnDisabled, setBtnDisabled] = useState(true)
+    useEffect(() => {
+        setBtnDisabled(!username || !password || !confirmPassword)
+    }, [username, password, confirmPassword])
     return <>
         <h2>Registration Form</h2>
         <form>
