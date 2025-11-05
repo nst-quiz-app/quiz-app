@@ -27,7 +27,7 @@ class AdminManager {
 class LearnersManager {
     /*
     add(username, password) - adds a new user. Note: it doesn't check whether the user already exists
-    check(password) - returns true if correct password; returns false if incorrect password
+    check(username, password) - returns true if correct password; returns false if incorrect password
     updatePassword(username, oldPassword, newPassword, byAdmin = false)
         - updates the password if either the oldPassword is correct or if it's done by admin
         - returns true upon success and false otherwise
