@@ -63,7 +63,7 @@ class LearnersManager {
         return false
     }
     exists(username) {
-        return (JSON.parse(localStorage.getItem("learners-credentials"))[username] != null) && (username !== "admin")
+        return (JSON.parse(localStorage.getItem("learners-credentials"))[username] != null) || (username === "admin")
     }
 }
 
