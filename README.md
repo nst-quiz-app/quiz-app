@@ -1,1 +1,0 @@
-Quiz App by NST-BLR students
